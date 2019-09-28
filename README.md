@@ -1,4 +1,4 @@
-# Neighborhood Map | React version :globe_with_meridians:
+# Text 911 | React PWA version :globe_with_meridians:
 
 [![FEAND nanodegree](https://img.shields.io/badge/udacity-FEAND-02b3e4.svg?style=flat)](https://br.udacity.com/course/front-end-web-developer-nanodegree--nd001-br-advanced)
 
@@ -55,7 +55,6 @@ The service worker only works in production mode.
 
 * [React](https://reactjs.org/) - A JavaScript library for building user interfaces
 * [react-google-maps](https://github.com/tomchentw/react-google-maps) - React.js Google Maps integration component
-* [Foursquare API](https://developer.foursquare.com/) - Local search-and-discovery service app
 * [Calaca](https://calaca.github.io/feand-neighborhood-map-react/) - Local search-and-discovery service app
 
 ## Contributing
