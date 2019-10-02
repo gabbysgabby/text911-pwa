@@ -1,0 +1,34 @@
+{
+  "name": "text911",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://github.com/gabbysgabby/text911-pwa.git",
+  "dependencies": {
+    "escape-string-regexp": "^1.0.5",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-geolocated": "^3.0.1",
+    "react-google-maps": "^9.4.5",
+    "react-scripts": "^2.1.1",
+    "react-throttle": "^0.3.0",
+    "recompose": "^0.27.1",
+    "sort-by": "^1.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "deploy": "npm run build && gh-pages -d build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.2.0"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
