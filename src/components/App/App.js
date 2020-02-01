@@ -8,6 +8,7 @@ import Filter from '../Filter/Filter';
 import Map from '../Map/Map';
 import Footer from '../Footer/Footer';
 import Error from '../Error/Error';
+import Modal from '../Common/Modal';
 import './App.css';
 
 class App extends Component {
@@ -20,7 +21,8 @@ class App extends Component {
     loaded: false,
     action: false,
     mapError: false,
-    markerAnimation: 2
+    markerAnimation: 2,
+    modal: true
   };
 
   /**
@@ -53,12 +55,27 @@ class App extends Component {
     });
   };
 
+  maybeModal() {
+    const { modal } = this.state;
+    if (modal) {
+      return (
+        <Modal
+          header="By using this service"
+          para="you agree to our terms of use and allow us to access your location."
+          btnTxt="Agree"
+          btnClick={() => this.setState({ modal: false })}
+        />
+      );
+    }
+  }
+
 
   render() {
     const { mapError, loaded } = this.state;
     return (
       <div className="app">
         <Top />
+        {this.maybeModal()}
         <div className="content">
           {loaded && !mapError && (
             <Map
