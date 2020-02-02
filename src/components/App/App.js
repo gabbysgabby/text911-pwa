@@ -33,7 +33,8 @@ class App extends Component {
       this.setState({
         places: res,
         showingPlaces: res,
-        loaded: true
+        loaded: true,
+        emergency: false
       });
     });
 
@@ -56,14 +57,23 @@ class App extends Component {
   };
 
   maybeModal() {
-    const { modal } = this.state;
+    const { modal, emergency } = this.state;
     if (modal) {
       return (
         <Modal
           header="By using this service"
           para="you agree to our terms of use and allow us to access your location."
           btnTxt="Agree"
-          btnClick={() => this.setState({ modal: false })}
+          btnClick={() => this.setState({ modal: false, emergency: true })}
+        />
+      );
+    } if (emergency) {
+      return (
+        <Modal
+          header="WHERE'S YOUR EMERGENCY?"
+          para="For this app to work, we need your location, please enable GPS."
+          btnTxt="Agree"
+          btnClick={() => this.setState({ emergency: false })}
         />
       );
     }
