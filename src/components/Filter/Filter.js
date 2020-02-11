@@ -47,7 +47,15 @@ const Filter = ({ data, filterPlaces, onToggleOpen }) => {
               className="icon"
               title="Red Cross Icon"
             />
-            Medical
+            <div className="form-check">
+              <label>
+              Medical
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                />
+              </label>
+            </div>
             </li>
             <li
               className="result-item"
@@ -59,7 +67,15 @@ const Filter = ({ data, filterPlaces, onToggleOpen }) => {
               className="icon"
               title="Police Car Icon"
             />
-            Police
+            <div className="form-check">
+              <label>
+              Police
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                />
+              </label>
+            </div>
             </li>
             <li
               className="result-item"
@@ -71,7 +87,15 @@ const Filter = ({ data, filterPlaces, onToggleOpen }) => {
               className="icon"
               title="Fire Icon"
             />
-            Fire
+            <div className="form-check">
+              <label>
+              Fire
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                />
+              </label>
+            </div>
             </li>
         </ul>
       </div>
