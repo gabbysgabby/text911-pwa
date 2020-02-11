@@ -12,7 +12,7 @@ $ git clone https://github.com/gabbysgabby/text911-pwa.git
 
 ```
 
-Or [download](https://github.com/gabbysgabby/text911-reactpwa/archive/master.zip) it as a ZIP file.
+Or [download](https://github.com/gabbysgabby/text911-pwa/archive/master.zip) it as a ZIP file.
 
 ### Prerequisites
 
