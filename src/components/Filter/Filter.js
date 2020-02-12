@@ -50,12 +50,12 @@ const Filter = ({ data, filterPlaces, onToggleOpen }) => {
             <div className="form-check">
               <label>
               Medical
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                />
               </label>
             </div>
+            <input
+              type="checkbox"
+              className="form-check-input"
+            />
             </li>
             <li
               className="result-item"
@@ -70,12 +70,12 @@ const Filter = ({ data, filterPlaces, onToggleOpen }) => {
             <div className="form-check">
               <label>
               Police
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                />
               </label>
             </div>
+            <input
+              type="checkbox"
+              className="form-check-input"
+            />
             </li>
             <li
               className="result-item"
@@ -90,12 +90,12 @@ const Filter = ({ data, filterPlaces, onToggleOpen }) => {
             <div className="form-check">
               <label>
               Fire
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                />
               </label>
             </div>
+            <input
+              type="checkbox"
+              className="form-check-input"
+            />
             </li>
         </ul>
       </div>
