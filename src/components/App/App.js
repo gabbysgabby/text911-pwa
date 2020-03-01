@@ -9,62 +9,37 @@ import Map from '../Map/Map';
 import Footer from '../Footer/Footer';
 import Error from '../Error/Error';
 import Modal from '../Common/Modal';
+import SwipeableButton from '../Common/SwipeableButton';
 import './App.css';
 
+// add buttons to filter
+// add user change location
+// grab location from map
+// add i18n library
+// display address of user
+
+const onSuccess = () => {
+  console.log('Yay! Swipe Success');
+}
+
 class App extends Component {
-  state = {
-    places: [],
-    showingPlaces: [],
-    query: '',
-    center: { lat: 37.8006568, lng: -122.4516305 },
-    showInfoId: '',
-    loaded: false,
-    action: false,
-    mapError: false,
-    markerAnimation: 2,
-    modal: true
-  };
-
-  /**
-   * @description Load initial data
-   */
-  componentDidMount() {
-    getAll().then(res => {
-      this.setState({
-        places: res,
-        showingPlaces: res,
-        loaded: true,
-        emergency: false
-      });
-    });
-
-    window.gm_authFailure = () => {
-      this.setState({ mapError: true });
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: true,
+      map: true
     };
   }
-
-  /**
-   * @description Toggle maker's infowindow open
-   * @param {string} id - The marker's place ID
-   * @param {string} action - Type of action fired (open or close)
-   */
-  onToggleOpen = (id, action) => {
-    this.setState({
-      showInfoId: id,
-      action,
-      markerAnimation: action ? 1 : null
-    });
-  };
 
   maybeModal() {
     const { modal, emergency } = this.state;
     if (modal) {
       return (
         <Modal
-          header="By using this service"
+          header="Terms of Agreement"
           para="you agree to our terms of use and allow us to access your location."
           btnTxt="Agree"
-          btnClick={() => this.setState({ modal: false, emergency: true })}
+          btnClick={() => this.setState({ modal: false })}
         />
       );
     } if (emergency) {
@@ -79,53 +54,42 @@ class App extends Component {
     }
   }
 
+  maybeMap() {
+    const { modal, map } = this.state;
+    if (map) return <Map btnClick={() => this.setState({ map: false, filter: true }) }/>;
+    return null;
+  }
+
+  maybeFilter() {
+    const { filter } = this.state;
+    if (filter) {
+      return (
+        <div>
+          <Filter
+            data={this.state}
+            onToggleOpen={this.onToggleOpen}
+            filterPlaces={this.filterPlaces}
+          />
+          <SwipeableButton onSuccess={onSuccess} color='red' text='Slide to Contact 911' />
+        </div>
+      );
+    } return null;
+  }
 
   render() {
-    const { mapError, loaded } = this.state;
+    const { modal, emergency } = this.state;
     return (
       <div className="app">
-        <Top />
-        {this.maybeModal()}
+        {
+          modal || emergency ?
+          <div className="modalContainer" /> :
+          null
+        }
         <div className="content">
-          {loaded && !mapError && (
-            <Map
-              onToggleOpen={this.onToggleOpen}
-              showInfoId={this.state.showInfoId}
-              action={this.state.action}
-              places={this.state.places}
-              showingPlaces={this.state.showingPlaces}
-              markerAnimation={this.state.markerAnimation}
-              containerElement={
-                <main className="map" role="application" tabIndex="0" />
-              }
-              mapElement={<div style={{ height: `100%` }} />}
-              loadingElement={
-                <Error
-                  message={
-                    'There was an error while loading the Google Maps scripts. Please try again later.'
-                  }
-                />
-              }
-              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${MAP_API_KEY}&v=3`}
-            />
-          )}
-          {mapError && (
-            <Error
-              size="small"
-              message={
-                'There was an error while loading the Google Maps scripts. Please try again later.'
-              }
-            />
-          )}
-          {loaded && (
-            <Filter
-              data={this.state}
-              onToggleOpen={this.onToggleOpen}
-              filterPlaces={this.filterPlaces}
-            />
-          )}
+          {this.maybeModal()}
+          {this.maybeMap()}
         </div>
-        <Footer />
+        {this.maybeFilter()}
       </div>
     );
   }
