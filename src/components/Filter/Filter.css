@@ -1,6 +1,6 @@
 .filter {
-  background-color: #eceff1;
-  width: 30%;
+  /* background-color: #eceff1; */
+  width: 100%;
   padding: 3em 1em;
 }
 
@@ -70,6 +70,7 @@
   border-bottom: 1px solid #b0bec5;
   cursor: pointer;
   transition: all 0.4s ease-in-out;
+  text-align: center;
 }
 
 .results-list .result-item:hover,
@@ -80,16 +81,4 @@
 
 .results-list .result-item:last-child {
   border-bottom: 0;
-}
-
-@media (max-width: 1179px) {
-  .filter {
-    width: 40%;
-  }
-}
-
-@media (max-width: 679px) {
-  .filter {
-    width: 100%;
-  }
 }
