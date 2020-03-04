@@ -14,9 +14,7 @@ import './App.css';
 
 // add buttons to filter
 // add user change location
-// grab location from map
 // add i18n library
-// display address of user
 
 const onSuccess = () => {
   console.log('Yay! Swipe Success');

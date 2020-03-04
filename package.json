@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://github.com/gabbysgabby/text911-pwa.git",
   "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^4.5.1",
     "escape-string-regexp": "^1.0.5",
     "mapbox-gl": "^1.8.1",
     "prop-types": "^15.6.2",

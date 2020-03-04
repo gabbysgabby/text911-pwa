@@ -4,19 +4,11 @@ import { compose } from 'recompose';
 import MapStyles from '../../utils/mapStyles.json';
 import MarkerInfo from '../MarkerInfo/MarkerInfo';
 import './Map.css';
-import mapboxgl, {GeolocateControl} from 'mapbox-gl';
+import mapboxgl, { GeolocateControl } from 'mapbox-gl';
 
 const TOKEN = 'pk.eyJ1IjoiZ2FiYnlnYWJieSIsImEiOiJjazZsYzgwaDEwMmFhM2hwaG1nMWZvcnpzIn0.Fw8Z5U4PoaEIQACGzQ2mYA';
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lng: 5,
-      lat: 34,
-      zoom: 2
-    };
-  }
   componentDidMount() {
     mapboxgl.accessToken = TOKEN;
     var map = new mapboxgl.Map({
@@ -25,28 +17,26 @@ class Map extends Component {
       center: [-96, 37.8], // starting position
       zoom: 3 // starting zoom
     });
-    var coordinates = document.getElementById('coordinates');
-    var marker = new mapboxgl.Marker({
-      draggable: true
-    }).setLngLat([0, 0]).addTo(map);
 
-    function onDragEnd() {
-      var lngLat = marker.getLngLat();
-      coordinates.style.display = 'block';
-      coordinates.innerHTML =
-        'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-    }
-
-    marker.on('dragend', onDragEnd);
-    // Add geolocate control to the map.
-    map.addControl(
-      new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        trackUserLocation: true
-      })
-    );
+    var geolocate = new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true
+    });
+    map.addControl(geolocate);
+    geolocate.on('geolocate', function(e) {
+      var lon = e.coords.longitude;
+      var lat = e.coords.latitude
+      var position = [lon, lat];
+      fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${position[0]},${position[1]}.json?access_token=${TOKEN}`)
+        .then(response => response.json())
+        .then(response => {
+          const address = response.features[0].place_name;
+          var coordinates = document.getElementById('coordinates')
+          coordinates.innerHTML = address;
+        });
+    })
   }
   render() {
     return (
@@ -64,7 +54,7 @@ class Map extends Component {
         />
         <button
           onClick={() => this.props.btnClick()}
-          className="button"
+          className="map-button"
           style={{ zIndex: 999999999, position: 'absolute', bottom: 0 }}
         >
           <p className="center-text blue-btn">
