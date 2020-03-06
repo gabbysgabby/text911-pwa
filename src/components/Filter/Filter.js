@@ -5,8 +5,9 @@ import './Filter.css';
 import RedCross from '../../assets/imgs/red-cross-2.png';
 import PoliceCar from '../../assets/imgs/police-car.png';
 import Fire from '../../assets/imgs/fire.png';
+import SwipeableButton from '../Common/SwipeableButton';
 
-const Filter = () => {
+const Filter = (props) => {
   return (
     <div className="filter">
       <h2 className="filter-title" tabIndex="0">
@@ -14,9 +15,9 @@ const Filter = () => {
       </h2>
       <div className="results">
         <ul className="results-list" tabIndex="0">
-          <li
-            className="result-item"
+          <button
             tabIndex="0"
+            className="result-item"
           >
             <img
               src={RedCross}
@@ -24,11 +25,11 @@ const Filter = () => {
               className="icon"
               title="Red Cross Icon"
             />
-            Medical
-          </li>
-          <li
+            <p>Medical</p>
+          </button>
+          <button
+            tabIndex="1"
             className="result-item"
-            tabIndex="0"
           >
             <img
               src={PoliceCar}
@@ -36,11 +37,11 @@ const Filter = () => {
               className="icon"
               title="Police Car Icon"
             />
-              Police
-          </li>
-          <li
+              <p>Police</p>
+          </button>
+          <button
+            tabIndex="2"
             className="result-item"
-            tabIndex="0"
           >
             <img
               src={Fire}
@@ -48,10 +49,11 @@ const Filter = () => {
               className="icon"
               title="Fire Icon"
             />
-            Fire
-          </li>
+            <p>Fire</p>
+          </button>
         </ul>
       </div>
+      <SwipeableButton onSuccess={() => props.onSuccess} color='red' text='Slide to Contact 911' />
     </div>
   );
 };

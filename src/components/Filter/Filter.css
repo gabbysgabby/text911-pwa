@@ -1,12 +1,14 @@
 .filter {
-  /* background-color: #eceff1; */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 9999999;
   width: 100%;
-  padding: 3em 1em;
 }
 
 .filter-title {
-  color: #263238;
-  font-size: 24px;
+  color: #fff;
+  font-size: 20px;
   font-weight: 300;
   margin: 0;
   padding-bottom: 0.5em;
@@ -52,9 +54,13 @@
   margin: 1em 0 0 0;
   list-style: none;
   padding: 0.5em;
-  background-color: #cfd8dc;
+  /* background-color: #cfd8dc; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }
-
 
 .icon {
   height: 30px;
@@ -64,13 +70,28 @@
 
 .results-list .result-item {
   color: #263238;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: normal;
-  padding: 0.8em;
-  border-bottom: 1px solid #b0bec5;
+  /* padding: 0.8em; */
+  /* border-bottom: 1px solid #b0bec5; */
   cursor: pointer;
   transition: all 0.4s ease-in-out;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #cfd8dc;
+  outline: 0;
+  border-color: transparent;
+  flex-direction: row;
+  /* height: 30px; */
+  flex: 1;
+  width: 100%;
+  margin: 5px;
+}
+
+p {
+  margin: 10px;
 }
 
 .results-list .result-item:hover,
