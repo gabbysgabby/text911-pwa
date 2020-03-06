@@ -28,3 +28,13 @@
   border-right: 0px;
   width: 100%;
 }
+
+.coordinates {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  color: #fff;
+  width: 50%;
+  text-wrap: wrap;
+  word-wrap: break-word;
+}
