@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Debounce } from 'react-throttle';
 import './Filter.css';
@@ -8,6 +8,9 @@ import Fire from '../../assets/imgs/fire.png';
 import SwipeableButton from '../Common/SwipeableButton';
 
 const Filter = (props) => {
+  const [medical, setMedical] = useState(false);
+  const [police, setPolice] = useState(false);
+  const [fire, setFire] = useState(false);
   return (
     <div className="filter">
       <h2 className="filter-title" tabIndex="0">
@@ -16,10 +19,14 @@ const Filter = (props) => {
       <div className="results">
         <ul className="results-list" tabIndex="0">
           <button
-            onClick={() => props.setMed()}
+            onClick={() => {
+              setMedical(true);
+              setPolice(false);
+              setFire(false);
+            }}
             tabIndex="0"
             className="result-item"
-            style={{ backgroundColor: props.medical === true ? 'red': '#cfd8dc' }}
+            style={{ backgroundColor: medical === true ? 'red': '#cfd8dc' }}
           >
             <img
               src={RedCross}
@@ -30,10 +37,14 @@ const Filter = (props) => {
             <p>Medical</p>
           </button>
           <button
-            onClick={() => props.setPol()}
+            onClick={() => {
+              setMedical(false);
+              setPolice(true);
+              setFire(false);
+            }}
             tabIndex="1"
             className="result-item"
-            style={{ backgroundColor: props.police === true ? 'red': '#cfd8dc' }}
+            style={{ backgroundColor: police === true ? 'red': '#cfd8dc' }}
           >
             <img
               src={PoliceCar}
@@ -44,10 +55,14 @@ const Filter = (props) => {
               <p>Police</p>
           </button>
           <button
-            onClick={() => props.setFire()}
+            onClick={() => {
+              setMedical(false);
+              setPolice(false);
+              setFire(true);
+            }}
             tabIndex="2"
             className="result-item"
-            style={{ backgroundColor: props.fire === true ? 'red': '#cfd8dc' }}
+            style={{ backgroundColor: fire === true ? 'red': '#cfd8dc' }}
           >
             <img
               src={Fire}
@@ -59,7 +74,7 @@ const Filter = (props) => {
           </button>
         </ul>
       </div>
-      <SwipeableButton onSuccess={() => props.onSuccess} color='red' text='Slide to Contact 911' />
+      <SwipeableButton onSuccess={props.onSuccess} color='red' text='Slide to Contact 911' />
     </div>
   );
 };
