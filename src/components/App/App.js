@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 import escapeRegExp from 'escape-string-regexp';
 import sortBy from 'sort-by';
 import { MAP_API_KEY } from '../../utils/apiKeys';
@@ -14,13 +15,6 @@ import './App.css';
 // add i18n library
 // ask to allow location on modal
 // look into caching
-// add dismiss filter on click
-// install redux
-// add props to map
-
-const onSuccess = () => {
-  console.log('Yay! Swipe Success');
-}
 
 class App extends Component {
   constructor(props) {
@@ -29,10 +23,12 @@ class App extends Component {
       modal: true,
       map: true,
       filter: false,
-      medical: false,
-      police: false,
-      fire: false
+      success: false
     };
+  }
+
+  onSuccess() {
+    this.setState({ success: true })
   }
 
   maybeModal() {
@@ -66,32 +62,24 @@ class App extends Component {
 
   maybeFilter() {
     const { filter, medical, police, fire } = this.state;
-    // if (filter) {
-      return (
-        <div>
-          <Map
-            dragEnd={() => console.log('end')}
-          />
-          <Filter
-            data={this.state}
-            medical={medical}
-            police={police}
-            fire={fire}
-            onToggleOpen={this.onToggleOpen}
-            filterPlaces={this.filterPlaces}
-            onSuccess={onSuccess}
-            setMed={() => this.setState({ medical: true, police: false, fire: false })}
-            setPol={() => this.setState({ police: true, medical: false, fire: false })}
-            setFire={() => this.setState({ fire: true, medical: false, police: false })}
-          />
-        </div>
-      );
-    // } return null;
+    return (
+      <div>
+        <Map
+          dragEnd={() => console.log('end')}
+        />
+        <Filter
+          data={this.state}
+          onToggleOpen={this.onToggleOpen}
+          filterPlaces={this.filterPlaces}
+          onSuccess={() => this.onSuccess()}
+        />
+      </div>
+    );
   }
 
   render() {
-    const { modal, emergency, filter } = this.state;
-    console.log('filter', filter)
+    const { modal, emergency, filter, success } = this.state;
+    if (success) return <Redirect push to="/details" />;
     return (
       <div className="app">
         {

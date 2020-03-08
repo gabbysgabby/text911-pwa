@@ -15,9 +15,6 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    if (this.state.long !== 0 && this.state.lat !== 0) {
-      this.props.btnClick();
-    }
     var options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -44,8 +41,8 @@ class Map extends Component {
       zoom: 13 // starting zoom
     });
     map.resize();
-    console.log('map', map)
     map.on('load', function() {
+
       var marker = new mapboxgl.Marker({
         draggable: true,
       }).setLngLat(coords).addTo(map);
@@ -70,11 +67,11 @@ class Map extends Component {
             const address = response.features[0].place_name;
             var coordinates = document.getElementById('coordinates')
             coordinates.innerHTML = address;
-            this.props.dragEnd();
           });
         }
       marker.on('dragend', onDragEnd);
       map.on('click', add_marker);
+
     });
   }
   render() {

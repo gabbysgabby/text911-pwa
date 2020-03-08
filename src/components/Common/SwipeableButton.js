@@ -67,7 +67,8 @@ export default class SwipeableButton extends Component {
   }
 
   onSuccess = () => {
-    container.current.style.width = container.current.clientWidth+'px';
+    console.log('there')
+    // container.current.style.width = container.current.clientWidth+'px';
     this.setState({
       unlocked: true
     })
