@@ -70,7 +70,7 @@ class App extends Component {
       return (
         <div>
           <Map
-            drageEnd={() => console.log('end')}
+            dragEnd={() => console.log('end')}
           />
           <Filter
             data={this.state}
