@@ -9,12 +9,14 @@ import Map from '../Map/Map';
 import Footer from '../Footer/Footer';
 import Error from '../Error/Error';
 import Modal from '../Common/Modal';
-import SwipeableButton from '../Common/SwipeableButton';
 import './App.css';
 
-// add buttons to filter
-// add user change location
 // add i18n library
+// ask to allow location on modal
+// look into caching
+// add dismiss filter on click
+// install redux
+// add props to map
 
 const onSuccess = () => {
   console.log('Yay! Swipe Success');
@@ -25,7 +27,11 @@ class App extends Component {
     super(props);
     this.state = {
       modal: true,
-      map: true
+      map: true,
+      filter: false,
+      medical: false,
+      police: false,
+      fire: false
     };
   }
 
@@ -54,28 +60,38 @@ class App extends Component {
 
   maybeMap() {
     const { modal, map } = this.state;
-    if (map) return <Map btnClick={() => this.setState({ map: false, filter: true }) }/>;
+    if (map) return <Map />;
     return null;
   }
 
   maybeFilter() {
-    const { filter } = this.state;
-    if (filter) {
+    const { filter, medical, police, fire } = this.state;
+    // if (filter) {
       return (
         <div>
+          <Map
+            drageEnd={() => console.log('end')}
+          />
           <Filter
             data={this.state}
+            medical={medical}
+            police={police}
+            fire={fire}
             onToggleOpen={this.onToggleOpen}
             filterPlaces={this.filterPlaces}
+            onSuccess={onSuccess}
+            setMed={() => this.setState({ medical: true, police: false, fire: false })}
+            setPol={() => this.setState({ police: true, medical: false, fire: false })}
+            setFire={() => this.setState({ fire: true, medical: false, police: false })}
           />
-          <SwipeableButton onSuccess={onSuccess} color='red' text='Slide to Contact 911' />
         </div>
       );
-    } return null;
+    // } return null;
   }
 
   render() {
-    const { modal, emergency } = this.state;
+    const { modal, emergency, filter } = this.state;
+    console.log('filter', filter)
     return (
       <div className="app">
         {
@@ -85,7 +101,6 @@ class App extends Component {
         }
         <div className="content">
           {this.maybeModal()}
-          {this.maybeMap()}
         </div>
         {this.maybeFilter()}
       </div>

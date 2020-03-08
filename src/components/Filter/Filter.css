@@ -80,7 +80,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #cfd8dc;
+  /* background-color: #cfd8dc; */
   outline: 0;
   border-color: transparent;
   flex-direction: row;

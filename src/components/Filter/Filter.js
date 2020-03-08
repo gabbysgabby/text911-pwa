@@ -16,8 +16,10 @@ const Filter = (props) => {
       <div className="results">
         <ul className="results-list" tabIndex="0">
           <button
+            onClick={() => props.setMed()}
             tabIndex="0"
             className="result-item"
+            style={{ backgroundColor: props.medical === true ? 'red': '#cfd8dc' }}
           >
             <img
               src={RedCross}
@@ -28,8 +30,10 @@ const Filter = (props) => {
             <p>Medical</p>
           </button>
           <button
+            onClick={() => props.setPol()}
             tabIndex="1"
             className="result-item"
+            style={{ backgroundColor: props.police === true ? 'red': '#cfd8dc' }}
           >
             <img
               src={PoliceCar}
@@ -40,8 +44,10 @@ const Filter = (props) => {
               <p>Police</p>
           </button>
           <button
+            onClick={() => props.setFire()}
             tabIndex="2"
             className="result-item"
+            style={{ backgroundColor: props.fire === true ? 'red': '#cfd8dc' }}
           >
             <img
               src={Fire}

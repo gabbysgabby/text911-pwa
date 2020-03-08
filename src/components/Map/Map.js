@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import mapboxgl, { GeolocateControl } from 'mapbox-gl';
 import './Map.css';
 
@@ -69,6 +70,7 @@ class Map extends Component {
             const address = response.features[0].place_name;
             var coordinates = document.getElementById('coordinates')
             coordinates.innerHTML = address;
+            this.props.dragEnd();
           });
         }
       marker.on('dragend', onDragEnd);
@@ -92,4 +94,11 @@ class Map extends Component {
     )
   }
 }
-export default Map;
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(Map)
