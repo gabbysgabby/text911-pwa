@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import mapboxgl, { GeolocateControl } from 'mapbox-gl';
 import './Map.css';
 
@@ -94,12 +94,11 @@ class Map extends Component {
     )
   }
 }
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
-//
-// export default connect(
-//   mapStateToProps,
-// )(Map)
-export default Map;
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(Map)
