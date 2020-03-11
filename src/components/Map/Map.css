@@ -15,3 +15,26 @@
     height: 480px;
   }
 }
+#coordinates {
+  position: absolute;
+  color: white;
+  margin: 10px;
+}
+
+.map-button {
+  border-top: 1px solid grey;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  width: 100%;
+}
+
+.coordinates {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  color: #fff;
+  width: 50%;
+  text-wrap: wrap;
+  word-wrap: break-word;
+}
